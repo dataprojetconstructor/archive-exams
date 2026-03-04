@@ -168,3 +168,48 @@ footer a {
 footer a:hover {
     color: #000;
 }
+
+/* --- RESPONSIVE DESIGN (POUR MOBILE) --- */
+
+/* Permet au tableau de scroller horizontalement sur mobile sans casser la page */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Scroll doux sur iPhone */
+}
+
+/* Sur les écrans de moins de 768px (Tablettes et Mobiles) */
+@media screen and (max-width: 768px) {
+    
+    .container {
+        padding: 10px; /* Moins de marge sur les côtés */
+        width: 100%;
+    }
+
+    /* On empile les filtres les uns sous les autres */
+    .filters {
+        flex-direction: column;
+        align-items: stretch; /* Prend toute la largeur */
+        gap: 10px;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    /* Les champs de recherche prennent toute la largeur */
+    input[type="text"], select {
+        width: 100%;
+        font-size: 16px; /* Empêche le zoom auto sur iPhone */
+        padding: 10px;   /* Plus facile à cliquer avec le doigt */
+    }
+
+    /* Ajustement du tableau pour gagner de la place */
+    th, td {
+        padding: 8px 5px; /* Moins d'espace dans les cellules */
+        font-size: 13px;  /* Texte un peu plus petit */
+    }
+
+    /* On cache le mot "Télécharger" pour mettre juste une icône ou PDF sur mobile si besoin, 
+       mais le scroll horizontal gère ça très bien maintenant. */
+}
