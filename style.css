@@ -1,0 +1,170 @@
+/* Reset basique */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0; /* Gris très clair, reposant */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* Conteneur principal centré */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+/* En-tête */
+header {
+    border-bottom: 2px solid #800000; /* Un rouge bordeaux académique */
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #000;
+}
+
+p.subtitle {
+    margin: 5px 0 0;
+    color: #666;
+    font-style: italic;
+}
+
+/* Zone de Recherche et Filtres */
+.filters {
+    background-color: #eee;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+input[type="text"], select {
+    padding: 6px;
+    border: 1px solid #999;
+    border-radius: 0; /* Pas d'arrondis modernes */
+    min-width: 150px;
+}
+
+/* Indicateur de chargement */
+#loader {
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    color: #666;
+    display: none; /* Caché par défaut, activé par JS */
+}
+
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top-color: #333;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Effet zébré pour la lisibilité "Data" */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #ffffcc; /* Surlignage jaune pâle au survol */
+}
+
+a.download-btn {
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+a.download-btn:hover {
+    text-decoration: underline;
+    color: #003366;
+}
+
+a.download-btn:visited {
+    color: #551a8b;
+}
+
+/* Message si aucun résultat */
+#no-results {
+    text-align: center;
+    color: #d00;
+    display: none;
+    padding: 20px;
+}
+/* --- AJOUT DU FOOTER --- */
+footer {
+    margin-top: 50px;           /* Espace entre le tableau et le footer */
+    padding-top: 20px;          /* Espace intérieur haut */
+    border-top: 1px solid #ddd; /* Ligne de séparation grise fine */
+    text-align: center;         /* Texte centré */
+    font-size: 12px;            /* Texte plus petit que le reste */
+    color: #777;                /* Gris moyen pour ne pas agresser l'oeil */
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #555;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #000;
+}
