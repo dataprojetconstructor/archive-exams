@@ -31,4 +31,39 @@
         "niveau": "L3",
         "fichier": "files/demo.pdf"
     }
+
+
+
+    {
+        "annee": 2023,
+        "semestre": "Harmattan",
+        "matiere": "Microéconomie I",
+        "filiere": "Economie",
+        "niveau": "L1",
+        "fichier": "files/macroeconomie/l1/2023/harmattan/ExternalitésDéfinition.pdf"
+    },
+    {
+        "annee": 2023,
+        "semestre": "Mousson",
+        "matiere": "Statistiques Descriptives",
+        "filiere": "Economie",
+        "niveau": "L1",
+        "fichier": "files/demo.pdf"
+    },
+    {
+        "annee": 2022,
+        "semestre": "Harmattan",
+        "matiere": "Macroéconomie",
+        "filiere": "Economie",
+        "niveau": "L2",
+        "fichier": "files/demo.pdf"
+    },
+    {
+        "annee": 2021,
+        "semestre": "Mousson",
+        "matiere": "Économétrie",
+        "filiere": "Economie",
+        "niveau": "L3",
+        "fichier": "files/demo.pdf"
+    }
 ]
