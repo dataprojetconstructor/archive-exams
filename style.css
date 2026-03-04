@@ -55,6 +55,13 @@ p.subtitle {
     flex-wrap: wrap;
     gap: 15px;
     align-items: center;
+    
+    position: -webkit-sticky; /* Pour que ça marche sur Safari (iPhone) */
+    position: sticky;         /* La commande standard */
+    top: 0;                   /* Colle l'élément tout en haut de l'écran */
+    z-index: 100;             /* S'assure qu'il passe AU-DESSUS du tableau */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1); /* Ajoute une petite ombre quand on scrolle */
+    border-top: 1px solid #ccc; /* Petite bordure esthétique */
 }
 
 .filter-group {
@@ -194,7 +201,9 @@ footer a:hover {
     .filters {
         flex-direction: column;
         align-items: stretch; /* Prend toute la largeur */
-        gap: 10px;
+        
+        padding: 10px;
+        gap: 5px;
     }
 
     .filter-group {
