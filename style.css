@@ -217,3 +217,24 @@ footer a:hover {
     /* On cache le mot "Télécharger" pour mettre juste une icône ou PDF sur mobile si besoin, 
        mais le scroll horizontal gère ça très bien maintenant. */
 }
+
+/* --- STYLE PAGE 404 --- */
+.error-content {
+    padding: 40px 20px;
+}
+
+a.back-btn {
+    display: inline-block;
+    background-color: #800000; /* Le même bordeaux que l'en-tête */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 3px; /* Légèrement arrondi */
+}
+
+a.back-btn:hover {
+    background-color: #500000; /* Un peu plus foncé au survol */
+    text-decoration: none;
+}
