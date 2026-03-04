@@ -16,6 +16,18 @@
 
     <!-- Zone de Filtres -->
     <div class="filters">
+
+        <div class="filter-group">
+            <label for="filiereSelect">Filière</label>
+            <select id="filiereSelect">
+                <option value="all">Toutes les filières</option>
+                <option value="Economie">Economie</option>
+                <option value="Gestion">Gestion</option>
+                <!-- Ajoutez d'autres filières ici si besoin -->
+            </select>
+        </div>
+
+        
         <div class="filter-group">
             <label for="search">Recherche (Matière)</label>
             <input type="text" id="search" placeholder="Ex: Microéconomie...">
@@ -49,6 +61,7 @@
     </div>
 
     <!-- Tableau des résultats -->
+     <div class="table-responsive">
     <table id="examTable" style="display:none;">
         <thead>
             <tr>
@@ -63,7 +76,8 @@
             <!-- Les lignes seront insérées ici par JavaScript -->
         </tbody>
     </table>
-
+</div>
+    
     <div id="no-results">Aucune épreuve trouvée pour ces critères.</div>
   
     <footer>
@@ -84,34 +98,33 @@
     // Éléments du DOM
     const tableBody = document.getElementById('tableBody');
     const searchInput = document.getElementById('search');
+    const filiereSelect = document.getElementById('filiereSelect'); // NOUVEAU
     const levelSelect = document.getElementById('levelSelect');
     const semesterSelect = document.getElementById('semesterSelect');
     const loader = document.getElementById('loader');
     const table = document.getElementById('examTable');
     const noResults = document.getElementById('no-results');
 
-    // 1. Charger les données au démarrage
+    // 1. Charger les données
     window.onload = function() {
-        // Simuler un petit délai (juste pour voir l'effet de chargement, à retirer en prod si vous voulez)
         loader.style.display = 'block';
-        
-        fetch('data.json')
+        fetch('data.json') // Assurez-vous que le chemin est bon (ex: /archive-exams/data.json sur GitHub si besoin)
             .then(response => response.json())
             .then(data => {
                 allExams = data;
                 renderTable(allExams);
-                loader.style.display = 'none'; // Cacher le chargement
-                table.style.display = 'table'; // Afficher le tableau
+                loader.style.display = 'none';
+                table.style.display = 'table';
             })
             .catch(error => {
-                loader.innerHTML = "Erreur de chargement de la base de données.";
+                loader.innerHTML = "Erreur de chargement des données.";
                 console.error('Erreur:', error);
             });
     };
 
-    // 2. Fonction pour afficher le tableau
+    // 2. Afficher le tableau
     function renderTable(data) {
-        tableBody.innerHTML = ''; // Vider le tableau actuel
+        tableBody.innerHTML = ''; 
 
         if (data.length === 0) {
             table.style.display = 'none';
@@ -124,13 +137,12 @@
 
         data.forEach(exam => {
             const row = document.createElement('tr');
-            
             row.innerHTML = `
                 <td><strong>${exam.niveau}</strong></td>
                 <td>${exam.semestre}</td>
                 <td>${exam.annee}</td>
                 <td>${exam.matiere}</td>
-                <td><a href="${exam.fichier}" class="download-btn" target="_blank">[Télécharger]</a></td>
+                <td style="text-align:center;"><a href="${exam.fichier}" class="download-btn" target="_blank">⬇ PDF</a></td>
             `;
             tableBody.appendChild(row);
         });
@@ -139,30 +151,29 @@
     // 3. Fonction de filtrage
     function filterExams() {
         const searchText = searchInput.value.toLowerCase();
+        const selectedFiliere = filiereSelect.value; // NOUVEAU
         const selectedLevel = levelSelect.value;
         const selectedSemester = semesterSelect.value;
 
         const filtered = allExams.filter(exam => {
-            // Filtre par texte (Matière)
             const matchText = exam.matiere.toLowerCase().includes(searchText);
-            
-            // Filtre par niveau
+            // NOUVEAU : On vérifie la filière (si 'all' on prend tout, sinon on compare)
+            // Note: Assurez-vous que dans data.json vous avez bien écrit "Economie" (sans accent ou avec, comme dans le select)
+            const matchFiliere = (selectedFiliere === 'all') || (exam.filiere === selectedFiliere);
             const matchLevel = (selectedLevel === 'all') || (exam.niveau === selectedLevel);
-            
-            // Filtre par semestre
             const matchSemester = (selectedSemester === 'all') || (exam.semestre === selectedSemester);
 
-            return matchText && matchLevel && matchSemester;
+            return matchText && matchFiliere && matchLevel && matchSemester;
         });
 
         renderTable(filtered);
     }
 
-    // 4. Écouteurs d'événements (dès qu'on touche aux filtres)
+    // 4. Écouteurs
     searchInput.addEventListener('input', filterExams);
+    filiereSelect.addEventListener('change', filterExams); // NOUVEAU
     levelSelect.addEventListener('change', filterExams);
     semesterSelect.addEventListener('change', filterExams);
-
 </script>
 
 </body>
