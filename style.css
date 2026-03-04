@@ -152,7 +152,7 @@ a.download-btn:visited {
 }
 /* --- AJOUT DU FOOTER --- */
 footer {
-    margin-top: 50px;           /* Espace entre le tableau et le footer */
+    margin-top: auto;           /* Espace entre le tableau et le footer */
     padding-top: 20px;          /* Espace intérieur haut */
     border-top: 1px solid #ddd; /* Ligne de séparation grise fine */
     text-align: center;         /* Texte centré */
