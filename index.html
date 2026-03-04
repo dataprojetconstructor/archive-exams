@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archives Examens - Économie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Archives des Épreuves</h1>
+        <p class="subtitle">Faculté des Sciences Économiques et de Gestion</p>
+    </header>
+
+    <!-- Zone de Filtres -->
+    <div class="filters">
+        <div class="filter-group">
+            <label for="search">Recherche (Matière)</label>
+            <input type="text" id="search" placeholder="Ex: Microéconomie...">
+        </div>
+
+        <div class="filter-group">
+            <label for="levelSelect">Niveau</label>
+            <select id="levelSelect">
+                <option value="all">Tous les niveaux</option>
+                <option value="L1">Licence 1 (L1)</option>
+                <option value="L2">Licence 2 (L2)</option>
+                <option value="L3">Licence 3 (L3)</option>
+                <option value="M1">Master 1 (M1)</option>
+                <option value="M2">Master 2 (M2)</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="semesterSelect">Semestre</label>
+            <select id="semesterSelect">
+                <option value="all">Tous les semestres</option>
+                <option value="Harmattan">Harmattan (Impair)</option>
+                <option value="Mousson">Mousson (Pair)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Indicateur de Chargement -->
+    <div id="loader">
+        <span class="spinner"></span> Chargement de l'archive...
+    </div>
+
+    <!-- Tableau des résultats -->
+    <table id="examTable" style="display:none;">
+        <thead>
+            <tr>
+                <th style="width: 10%;">Niveau</th>
+                <th style="width: 15%;">Semestre</th>
+                <th style="width: 10%;">Année</th>
+                <th style="width: 50%;">Matière</th>
+                <th style="width: 15%;">Fichier</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Les lignes seront insérées ici par JavaScript -->
+        </tbody>
+    </table>
+
+    <div id="no-results">Aucune épreuve trouvée pour ces critères.</div>
+  
+    <footer>
+        <p>&copy; 2026 Archive Économie - Initiative étudiante indépendante.</p>
+        <p>
+            Une épreuve manque ? 
+            <a href="mailto:votre-email@etudiant.univ.tg">Envoyez-nous le sujet par mail</a>
+        </p>
+        <p>Ce site n'est pas le site officiel de l'université.</p>
+    </footer>
+
+</div>
+
+<script>
+    // Variables globales
+    let allExams = [];
+    
+    // Éléments du DOM
+    const tableBody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('search');
+    const levelSelect = document.getElementById('levelSelect');
+    const semesterSelect = document.getElementById('semesterSelect');
+    const loader = document.getElementById('loader');
+    const table = document.getElementById('examTable');
+    const noResults = document.getElementById('no-results');
+
+    // 1. Charger les données au démarrage
+    window.onload = function() {
+        // Simuler un petit délai (juste pour voir l'effet de chargement, à retirer en prod si vous voulez)
+        loader.style.display = 'block';
+        
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                allExams = data;
+                renderTable(allExams);
+                loader.style.display = 'none'; // Cacher le chargement
+                table.style.display = 'table'; // Afficher le tableau
+            })
+            .catch(error => {
+                loader.innerHTML = "Erreur de chargement de la base de données.";
+                console.error('Erreur:', error);
+            });
+    };
+
+    // 2. Fonction pour afficher le tableau
+    function renderTable(data) {
+        tableBody.innerHTML = ''; // Vider le tableau actuel
+
+        if (data.length === 0) {
+            table.style.display = 'none';
+            noResults.style.display = 'block';
+            return;
+        } else {
+            table.style.display = 'table';
+            noResults.style.display = 'none';
+        }
+
+        data.forEach(exam => {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td><strong>${exam.niveau}</strong></td>
+                <td>${exam.semestre}</td>
+                <td>${exam.annee}</td>
+                <td>${exam.matiere}</td>
+                <td><a href="${exam.fichier}" class="download-btn" target="_blank">[Télécharger]</a></td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // 3. Fonction de filtrage
+    function filterExams() {
+        const searchText = searchInput.value.toLowerCase();
+        const selectedLevel = levelSelect.value;
+        const selectedSemester = semesterSelect.value;
+
+        const filtered = allExams.filter(exam => {
+            // Filtre par texte (Matière)
+            const matchText = exam.matiere.toLowerCase().includes(searchText);
+            
+            // Filtre par niveau
+            const matchLevel = (selectedLevel === 'all') || (exam.niveau === selectedLevel);
+            
+            // Filtre par semestre
+            const matchSemester = (selectedSemester === 'all') || (exam.semestre === selectedSemester);
+
+            return matchText && matchLevel && matchSemester;
+        });
+
+        renderTable(filtered);
+    }
+
+    // 4. Écouteurs d'événements (dès qu'on touche aux filtres)
+    searchInput.addEventListener('input', filterExams);
+    levelSelect.addEventListener('change', filterExams);
+    semesterSelect.addEventListener('change', filterExams);
+
+</script>
+
+</body>
+</html>
