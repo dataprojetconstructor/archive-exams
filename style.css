@@ -199,8 +199,7 @@ footer a:hover {
 
     /* On empile les filtres les uns sous les autres */
     .filters {
-        flex-direction: column;
-        align-items: stretch; /* Prend toute la largeur */
+      
         
         padding: 10px;
         gap: 5px;
