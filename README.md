@@ -43,7 +43,3 @@ Pour ajouter un nouveau sujet d'examen, suivez ces étapes :
 } 
 
 
-⚠️ Avertissement
-Ce site n'est pas le site officiel de l'université ou de l'établissement. Les documents sont partagés à but pédagogique.
-🤝 Contribuer
-Les étudiants souhaitant partager une épreuve manquante peuvent l'envoyer par email (voir pied de page du site).
