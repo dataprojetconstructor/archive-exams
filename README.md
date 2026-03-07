@@ -13,7 +13,7 @@ Fournir une interface simple, rapide et accessible (mobile & PC) pour rechercher
 - **Année Académique**
 
 ## 🛠 Comment ça marche ? (Technique)
-Ce site est **statique** et hébergé gratuitement via GitHub Pages. Il ne nécessite aucune base de données complexe (SQL).
+Ce site est **statique** et hébergé gratuitement via GitHub Pages. Il ne nécessite aucune base de données complexe.
 
 - **Frontend :** HTML5, CSS3 (Style classique/universitaire), JavaScript (Vanilla).
 - **Données :** Toutes les informations des épreuves sont stockées dans le fichier `data.json`.
