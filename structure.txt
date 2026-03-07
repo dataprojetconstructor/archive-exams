@@ -1,0 +1,6 @@
+/archive-exams
+    |-- index.html      (La page du site)
+    |-- style.css       (Le design "classique")
+    |-- data.json       (La liste de vos épreuves)
+    |-- /files          (Le dossier où nous mettrons les PDF)
+         |-- demo.pdf   
