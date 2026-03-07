@@ -41,3 +41,9 @@ Pour ajouter un nouveau sujet d'examen, suivez ces étapes :
     "niveau": "L1",
     "fichier": "files/nom_du_fichier.pdf"
 } 
+
+
+⚠️ Avertissement
+Ce site n'est pas le site officiel de l'université ou de l'établissement. Les documents sont partagés à but pédagogique.
+🤝 Contribuer
+Les étudiants souhaitant partager une épreuve manquante peuvent l'envoyer par email (voir pied de page du site).
