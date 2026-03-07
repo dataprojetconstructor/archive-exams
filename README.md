@@ -3,7 +3,7 @@
 Ce dépôt héberge le site web d'archivage des épreuves d'examens pour la faculté des Sciences Économiques et de Gestion. 
 Il s'agit d'une initiative étudiante indépendante visant à centraliser et pérenniser l'accès aux anciens sujets.
 
-🔗 **Accéder au site :** [https://votre-pseudo.github.io/votre-repo/](remplacez-ce-lien)
+🔗 **Accéder au site :** [https://dataprojetconstructor.github.io/archive-exams/](remplacez-ce-lien)
 
 ## 🎯 Objectif
 Fournir une interface simple, rapide et accessible (mobile & PC) pour rechercher et télécharger les épreuves passées, classées par :
